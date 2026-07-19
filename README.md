@@ -1,6 +1,6 @@
 # navigator
 
-The navigator frontmatter/tag-aware discovery CLI and Claude Code plugin. (confirm/refine)
+The navigator frontmatter/tag-aware discovery CLI and Claude Code plugin.
 
 ## Claude Code setup
 
