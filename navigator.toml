@@ -1,0 +1,19 @@
+# navigator adoption sentinel. Repo-root-relative; run navigator from repo root.
+sentinel_version = 2
+navigator_version = "0.1.0"
+
+# Embedded named bundles (no vendored files): default owns the `type` facet,
+# reports adds the `type:report` rule-set. No private packs in this repo.
+extensions = ["default@1.0.0", "reports@1.0.0"]
+
+[schema]
+profile = "core@2.0.0"
+suppress_merge_warnings = false
+
+[lint]
+include = ["**/*.md"]
+exclude = [
+  ".git/**",
+  "node_modules/**",
+  ".venv/**",
+]

@@ -1,0 +1,5 @@
+# Claude Code personal overrides — never commit
+.claude/settings.local.json
+
+# OS / editor junk
+.DS_Store
