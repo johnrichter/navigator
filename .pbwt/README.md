@@ -1,16 +1,18 @@
 ---
-name: "Projects directory"
-description: "Convention for in-repo, short-lived project workspaces under .projects/<slug>/ — tracked in git so delivery-agent-team (build-with-team) can plan, build, resume, and release in-repo."
-id: "doc:navigator:projects-convention"
+name: "Plan/build-with-team directory"
+description: "In-repo home for plan-with-team / build-with-team (PBWT) plans and builds — one directory per effort under .pbwt/<slug>/, tracked in git so delivery-agent-team can plan, build, resume, and release in-repo. Transitional: to be retired in favor of .anoikis/."
+id: "doc:navigator:pbwt-convention"
 tags: [type:doc, topic:process, status:complete, privacy:public, owner:public]
-links: []
+links: [doc:navigator:anoikis-convention]
 updated: 2026-07-19T00:00:00Z
 ---
 
-# Projects
+# .pbwt — plan/build-with-team
 
-Short-lived, in-repo project workspaces — one directory per project (`.projects/<slug>/`).
+Home for `delivery-agent-team` **plan-with-team** and **build-with-team** (PBWT) work — one directory per effort (`.pbwt/<slug>/`).
 
-- **Tracked in git.** Projects are committed so `delivery-agent-team` (build-with-team) can plan, build, resume, and hand off across sessions.
-- **Short-lived.** Complete the work, cut a release (git tag / GitHub artifact / plugin version), consume it downstream, then prune the project directory.
-- **Scope.** Everything a project needs (design, plan, notes, scratch) lives under its slug directory — not scattered across the repo root.
+- **Tracked in git.** Plans and builds are committed so the harness can plan, build, resume, and hand off across sessions.
+- **Short-lived.** Complete the work, cut a release (git tag / GitHub artifact / plugin version), consume it downstream, then prune the effort directory.
+- **Scope.** Everything an effort needs (design, plan, notes, scratch) lives under its slug directory — not scattered across the repo root.
+
+> **Transitional.** `.pbwt/` will be retired in favor of `.anoikis/` (reserved now) once anoikis-based planning and builds take over. New efforts will move there.

@@ -14,7 +14,7 @@ This repo root is the working boundary. Don't create, modify, or delete files ou
 
 ## Projects
 
-Project work lives in `.projects/<slug>/` at the repo root, tracked in git so `delivery-agent-team` (build-with-team) can plan, build, and resume in-repo. Keep projects short-lived: complete, cut a release, then prune.
+Plan/build-with-team work lives in `.pbwt/<slug>/` at the repo root, tracked in git so `delivery-agent-team` can plan, build, and resume in-repo. Keep efforts short-lived: complete, cut a release, then prune. `.pbwt/` will be retired in favor of `.anoikis/` (reserved now) as anoikis-based planning takes over.
 
 ## Discovery
 
