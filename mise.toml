@@ -1,0 +1,6 @@
+# Per-repo cargo build output on fast/ephemeral storage; auto-applied by mise on cd.
+# {{env.HOME}} is templated per machine, so this resolves correctly everywhere;
+# on the workspace boxes ~/.cache is the ephemeral instance-store mount.
+# Inert until this repo contains a Cargo package/workspace.
+[env]
+CARGO_TARGET_DIR = "{{env.HOME}}/.cache/cargo/target/navigator"
