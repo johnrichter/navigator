@@ -1,5 +1,247 @@
-# Claude Code personal overrides — never commit
-.claude/settings.local.json
+###############################################################################
+# SECRETS — never commit
+###############################################################################
 
-# OS / editor junk
+# SSH private keys — base names + per-variant <variant>_* + generic forms; .pub kept trackable
+id_rsa
+id_rsa_*
+id_dsa
+id_dsa_*
+id_ecdsa
+id_ecdsa_*
+id_ed25519
+id_ed25519_*
+*_rsa
+*_dsa
+*_ecdsa
+*_ed25519
+*.ppk
+!*.pub
+
+# Other private-key / cert file types
+*.pem
+*.key
+
+# TLS / PKCS / keystore key material
+*.p12
+*.pfx
+*.p8
+*.jks
+*.keystore
+
+# Apple signing material
+*.mobileprovision
+*.certSigningRequest
+
+# GPG
+secring.*
+
+# Environment files — but keep committed examples/templates
+.env
+.env.*
+*.env
+.envrc
+!.env.example
+!.env.sample
+!.env.template
+!*.env.example
+!*.env.sample
+!*.env.template
+!.envrc.example
+
+# Cloud provider credentials
+.aws/
+.gcloud/
+gcloud-*.json
+*-service-account*.json
+.azure/
+
+# Generic credential / secret files
+.netrc
+.git-credentials
+credentials
+credentials.json
+secrets.*
+*.secret
+.npmrc
+.pypirc
+
+###############################################################################
+# OS cruft
+###############################################################################
+
+# macOS — github.com/gitignore/Global/OSX.gitignore
 .DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+# Icon must end with two \r
+/Icon
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows — github.com/gitignore/Global/Windows.gitignore
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux — github.com/gitignore/Global/Linux.gitignore
+# KDE directory preferences
+.directory
+# Trash folder which might appear on any partition or disk
+.Trash-*
+
+###############################################################################
+# Editor / IDE
+###############################################################################
+
+# Eclipse — github.com/gitignore/Global/Eclipse.gitignore
+*.pydevproject
+.metadata
+.gradle
+.settings/
+.loadpath
+local.properties
+.project
+.externalToolBuilders/
+*.launch
+.cproject
+.classpath
+.factorypath
+.buildpath
+.target
+.texlipse
+# Interface Builder backup (legacy Eclipse/Xcode collage)
+*~.nib
+
+# Emacs — github.com/gitignore/Global/Emacs.gitignore
+*~
+\#*\#
+.\#*
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.org-id-locations
+*_archive
+*_flymake.*
+/eshell/history
+/eshell/lastdir
+/elpa/
+*.rel
+/auto/
+.cask/
+
+# JetBrains (IntelliJ, PyCharm, GoLand, RubyMine, AppCode, CLion, Android Studio)
+# github.com/gitignore/Global/JetBrains.gitignore
+*.iml
+.idea/
+*.ipr
+*.iws
+/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+
+# Sublime Text — github.com/gitignore/Global/SublimeText.gitignore
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+sftp-config.json
+
+# Vim — github.com/gitignore/Global/Vim.gitignore
+*.swp
+*.swo
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# Visual Studio Code — github.com/gitignore/Global/VisualStudioCode.gitignore
+.vscode
+
+###############################################################################
+# Language / build-tool artifacts
+###############################################################################
+
+# VirtualEnv (Python) — github.com/gitignore/Global/VirtualEnv.gitignore
+.Python
+env/
+venv/
+pyvenv.cfg
+pip-selfcheck.json
+
+# IPython / Jupyter Notebook — github.com/gitignore/Global/IPythonNotebook.gitignore
+.ipynb_checkpoints/
+
+# Xcode — github.com/gitignore/Global/Xcode.gitignore
+## Build generated
+build/
+DerivedData
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
+# Microsoft Office — github.com/gitignore/Global/MicrosoftOffice.gitignore
+# Word temporary
+~$*.doc*
+# Excel temporary
+~$*.xls*
+# Excel Backup File
+*.xlk
+
+# Eclipse-generated build/scratch dirs (kept from original collage; broad —
+# fine at the machine-global scope, narrowed per-repo where it would collide)
+bin/
+tmp/
+
+###############################################################################
+# Universal caches / logs / temp
+###############################################################################
+
+*.log
+*.tmp
+*.bak
+*.pid
+.cache/
+
+###############################################################################
+# Claude Code
+###############################################################################
+
+# Local settings are machine-specific — never shared
+**/.claude/settings.local.json
+# Claude Code git worktrees at the repo root
+.claude/worktrees/
