@@ -65,8 +65,8 @@ pedantic = { level = "warn", priority = -1 }
 # without a network fetch of a tag that doesn't exist. Remove this table
 # once every crate below has a released `rust/<name>/v0.1.0` tag.
 [patch."https://github.com/johnrichter/claude-shared-tooling.git"]
-bm25 = { path = "../../../../ai-shared-lib/rust/bm25" }
-frontmatter = { path = "../../../../ai-shared-lib/rust/frontmatter" }
-facetquery = { path = "../../../../ai-shared-lib/rust/facetquery" }
-clikit = { path = "../../../../ai-shared-lib/rust/clikit" }
-logkit = { path = "../../../../ai-shared-lib/rust/logkit" }
+bm25 = { path = "../ai-shared-lib/rust/bm25" }
+frontmatter = { path = "../ai-shared-lib/rust/frontmatter" }
+facetquery = { path = "../ai-shared-lib/rust/facetquery" }
+clikit = { path = "../ai-shared-lib/rust/clikit" }
+logkit = { path = "../ai-shared-lib/rust/logkit" }
