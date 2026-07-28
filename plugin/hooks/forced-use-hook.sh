@@ -65,22 +65,23 @@ matches_prefix() {
 }
 
 # raw_matches TOOL_NAME COMMAND OP_RAW_JSON -- true iff this invocation is a
-# raw usage this operation's CLI supersedes. Its scan index is "j", never
-# "i" -- the caller's own op-index loop already owns "i" in this shell's one
-# flat global scope (POSIX sh functions carry no implicit local vars), and a
-# shared name here would clobber the caller's loop counter every time this
-# function runs, corrupting or truncating the op scan below.
+# raw usage this operation's CLI supersedes.
+#
+# POSIX sh functions have no locals, so this scan's loop counter is named
+# distinctly from the caller's (rm_i, not i): the outer operations loop below
+# also counts with `i`, and a shared name here would have the caller's index
+# reset every time this scan finds no match, looping the caller forever.
 raw_matches() {
   raw_tool="$(printf '%s' "$3" | jq -r '.tool_name')"
   [ "${raw_tool}" = "$1" ] || return 1
   [ "${raw_tool}" = "Bash" ] || return 0
   prefix_count="$(printf '%s' "$3" | jq -r '.command_prefixes // [] | length')"
   [ "${prefix_count}" -eq 0 ] && return 0
-  j=0
-  while [ "${j}" -lt "${prefix_count}" ]; do
-    p="$(printf '%s' "$3" | jq -r --argjson j "${j}" '.command_prefixes[$j]')"
+  rm_i=0
+  while [ "${rm_i}" -lt "${prefix_count}" ]; do
+    p="$(printf '%s' "$3" | jq -r --argjson i "${rm_i}" '.command_prefixes[$i]')"
     matches_prefix "$2" "${p}" && return 0
-    j=$((j + 1))
+    rm_i=$((rm_i + 1))
   done
   return 1
 }
