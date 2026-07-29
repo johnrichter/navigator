@@ -1,0 +1,72 @@
+[package]
+name = "navigator"
+version = "2.0.0"
+edition = "2021"
+publish = false
+license = "MIT"
+description = "Hybrid BM25 + facet/boolean search and lint over a repo's frontmatter-tagged files"
+
+[[bin]]
+name = "navigator"
+path = "src/main.rs"
+
+[dependencies]
+# CLI framework per SC-STACK. `derive` generates the arg struct/subcommand
+# enum's parser from the type definitions in `cli.rs` directly, so the
+# argument surface and its parser stay one definition.
+clap = { version = "4.6", features = ["derive"] }
+# Config resolution per SC-STACK (a remaintained, actively-maintained fork
+# of `figment`): layers the `navigator.toml` sentinel under environment
+# overrides under CLI flags into one `ResolvedConfig`, explicit
+# flag > env > file > default precedence, load-only.
+figment2 = { version = "0.11", features = ["toml"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Recursive file walk with prune-before-descend support, for the
+# `navigator.toml` `[lint]` include/exclude scope over the reachable set.
+walkdir = "2.5"
+# Compiles `[lint] include`/`exclude` globs once per run, the same trusted
+# glob engine `frontmatter` uses for its own `file_class`/`exempt` globs.
+globset = "0.4"
+# Platform cache-dir resolution for the out-of-tree freshness cache --
+# never a path inside the repo, so nothing about it is ever committed.
+dirs = "5.0"
+# Content hash for the freshness cache's touch-without-edit confirmation.
+sha2 = "0.10"
+
+# The three reused Rust libraries this CLI composes (pure ranking/parsing/
+# query logic; no CLI concerns of their own) plus the fleet's CLI output
+# contract. Git-tag dependencies per SC-VERSIONING -- never a path dep
+# across repos. `[patch]` below redirects each to the sibling monorepo
+# checkout for a local build, since none has cut its first tag yet; drop
+# the patch once `rust/<crate>/v0.1.0` exists on the remote.
+bm25 = { git = "https://github.com/johnrichter/claude-shared-tooling.git", tag = "rust/bm25/v0.1.0" }
+frontmatter = { git = "https://github.com/johnrichter/claude-shared-tooling.git", tag = "rust/frontmatter/v0.1.0" }
+facetquery = { git = "https://github.com/johnrichter/claude-shared-tooling.git", tag = "rust/facetquery/v0.1.0" }
+clikit = { git = "https://github.com/johnrichter/claude-shared-tooling.git", tag = "rust/clikit/v0.1.0" }
+logkit = { git = "https://github.com/johnrichter/claude-shared-tooling.git", tag = "rust/logkit/v0.1.0" }
+
+[dev-dependencies]
+tempfile = "3.27.0"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+
+# Pre-release bridge: `bm25`/`frontmatter`/`facetquery`/`clikit`/`logkit`
+# haven't cut a tag yet, so the git dependencies above are unresolvable
+# against the remote as declared. Mirrors `ai-shared-lib/rust/Cargo.toml`'s
+# own `[patch]` for the same reason (its `frontmatter -> facetquery` and
+# `clikit -> logkit` edges): redirect to the sibling checkout on disk so a
+# local build and CI (which checks out both repos side by side) resolve
+# without a network fetch of a tag that doesn't exist. Remove this table
+# once every crate below has a released `rust/<name>/v0.1.0` tag.
+[patch."https://github.com/johnrichter/claude-shared-tooling.git"]
+bm25 = { path = "../ai-shared-lib/rust/bm25" }
+frontmatter = { path = "../ai-shared-lib/rust/frontmatter" }
+facetquery = { path = "../ai-shared-lib/rust/facetquery" }
+clikit = { path = "../ai-shared-lib/rust/clikit" }
+logkit = { path = "../ai-shared-lib/rust/logkit" }

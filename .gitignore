@@ -185,6 +185,11 @@ Session.vim
 # Language / build-tool artifacts
 ###############################################################################
 
+# Rust / Cargo — build output. Anchored to the repo-root crate; mise.toml
+# redirects CARGO_TARGET_DIR out of tree, so this only catches runs where
+# mise isn't active.
+/target/
+
 # VirtualEnv (Python) — github.com/gitignore/Global/VirtualEnv.gitignore
 .Python
 env/
