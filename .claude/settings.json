@@ -1,23 +1,5 @@
 {
   "effortLevel": "medium",
-  "enabledPlugins": {
-    "anthropic-info@jr-claude-plugins": true,
-    "claude-foundation@jr-claude-plugins": true,
-    "claude-mem-tools@jr-claude-plugins": true,
-    "delivery-agent-team@jr-claude-plugins": true,
-    "governance-agents@jr-claude-plugins": true,
-    "governance-audit@jr-claude-plugins": true,
-    "governance-claude-marketplace@jr-claude-plugins": true,
-    "governance-claude-plugins@jr-claude-plugins": true,
-    "governance-code@jr-claude-plugins": true,
-    "governance-git@jr-claude-plugins": true,
-    "governance-hooks@jr-claude-plugins": true,
-    "governance-rules@jr-claude-plugins": true,
-    "governance-skills@jr-claude-plugins": true,
-    "governance-sub-agents@jr-claude-plugins": true,
-    "navigator@jr-claude-plugins": true,
-    "writing-voice@jr-claude-plugins": true
-  },
   "permissions": {
     "allow": [
       "WebFetch(domain:code.claude.com)",
